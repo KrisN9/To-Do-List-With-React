@@ -3,19 +3,22 @@ import React, {useState} from "react";
 //create your first component
 const Home = () => {
 
-	const [inputValue, setInputValue] = UseState()
+	const [inputValue, setInputValue] = useState("")
 
 	const handleChange = (event) => {
 		setInputValue(event.target.value)
 	}
 
 	const handleKeyDown = (event) => {
-		console.log(event)
+		if (event.code === "Enter") {
+			console.log(inputValue)
+		}
 	}
 
 	return (
 		<div className="text-center black">
-			<input type='text' onChange={handleChange} onKeyDown={handleKeyDown} />
+			<h1>todos</h1>
+			<input type='text' value={inputValue} placeholder="No tasks, add a task" onChange={handleChange} onKeyDown={handleKeyDown} />
 		</div>
 	);
 };
