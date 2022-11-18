@@ -16,9 +16,11 @@ const Home = () => {
 	}
 
 	return (
-		<div className="text-center black">
-			<h1>todos</h1>
-			<input type='text' value={inputValue} placeholder="No tasks, add a task" onChange={handleChange} onKeyDown={handleKeyDown} />
+		<div className="text-center text-danger text-opacity-50">
+			<div id="demo" className="collapse show">
+				<h1 className="display-1">todos</h1>
+				<input type='text' value={inputValue} placeholder="No tasks, add a task" onChange={handleChange} onKeyDown={handleKeyDown} />
+			</div>
 		</div>
 	);
 };
