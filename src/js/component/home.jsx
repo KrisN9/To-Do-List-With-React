@@ -9,13 +9,12 @@ const Home = () => {
 
 	const handleSubmit = (event) => {
 		if (event.key === "Enter") {
-			setTasks{tasks.concat([inputValue])};
-			setInputValue("");
+			setTasks([...tasks, event.target.value])
 		}
 	}
 
 	const deleteTask = (id) => {
-		let filteredTasks = tasks.filter( task => task.id !== id );
+		let filteredTasks = tasks.filter( (task, index) => index !== id );
 		setTasks(filteredTasks)
 	}
 
@@ -24,17 +23,19 @@ const Home = () => {
 			<div id="todos">
 				<h1 className="display-1">todos</h1>
 				<div className="list-card">
-					<form onSubmit={handleSubmit}>
-						<input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} 
-						className="input-box" placeholder="No tasks, add a task" onKeyPress={handleSubmit} />
+					<form>
+						<input type="text" onChange={(e) => setInputValue(e.target.value)} placeholder="No tasks, add a task"
+						onKeyDown={handleSubmit}></input>
 					</form>
 					<div className="list-items">
-						{tasks.map((task) = (
-							<div className="todo" key={task.id}>
-								<p>{task.text}
-									<button className="button" onClick={() => deleteTask(task.id)}>&#10060;</button>
+						{tasks.map((task, index) => {
+							return (
+							<div className="todo" key={index}>
+								<p>{task}
+									<button className="button" onClick={() => deleteTask(index)}>&#10060;</button>
 								</p>
 							</div>)
+						}
 						)}
 						<p className="counter">{tasks.length} item left</p>
 					</div>
