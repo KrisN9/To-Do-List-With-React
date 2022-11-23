@@ -8,31 +8,25 @@ const Home = () => {
 	const [inputValue, setInputValue] = useState("")
 
 	const handleSubmit = (event) => {
-		event.preventDefault();
-		if (inputValue != ""){
-			let addTask = {
-				id: Math.floor(Math.random() * 1000),
-				text: inputValue,
-				completed: false
-			}
-			setTasks([...tasks, addTask])
-			setInputValue("")
+		if (event.key === "Enter") {
+			setTasks{tasks.concat([inputValue])};
+			setInputValue("");
 		}
 	}
 
 	const deleteTask = (id) => {
-		let filteredTasks = [...tasks].filter(task => task.id !== id);
+		let filteredTasks = tasks.filter( task => task.id !== id );
 		setTasks(filteredTasks)
 	}
 
 	return (
-		<div className="todos text-center text-danger text-opacity-50">
+		<div className="text-center text-danger text-opacity-50">
 			<div id="todos">
 				<h1 className="display-1">todos</h1>
 				<div className="list-card">
 					<form onSubmit={handleSubmit}>
-						<input type="text" value={inputValue} onChange={event => setInputValue(event.target.value)} 
-						className="input-box" placeholder="No tasks, add a task" />
+						<input type="text" value={inputValue} onChange={(e) => setInputValue(e.target.value)} 
+						className="input-box" placeholder="No tasks, add a task" onKeyPress={handleSubmit} />
 					</form>
 					<div className="list-items">
 						{tasks.map((task) = (
@@ -42,7 +36,7 @@ const Home = () => {
 								</p>
 							</div>)
 						)}
-						<p className="counter">{tasks.length > 1 ? "One task left" : "Tasks left: ${tasks.length}"}</p>
+						<p className="counter">{tasks.length} item left</p>
 					</div>
 				</div>
 			</div>
