@@ -23,10 +23,8 @@ const Home = () => {
 			<div id="todos">
 				<h1 className="display-1">todos</h1>
 				<div className="list-card">
-					<form>
-						<input type="text" onChange={(e) => setInputValue(e.target.value)} placeholder="No tasks, add a task"
-						onKeyDown={handleSubmit}></input>
-					</form>
+					<input type="text" onChange={(e) => setInputValue(e.target.value)} placeholder="No tasks, add a task"
+					onKeyDown={handleSubmit}></input>
 					<div className="list-items">
 						{tasks.map((task, index) => {
 							return (
